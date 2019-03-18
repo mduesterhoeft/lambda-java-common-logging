@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                    <pattern>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</pattern>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                    <shortenedLoggerNameLength>36</shortenedLoggerNameLength>
+                </loggerName>
+                <logLevel/>
+                <mdc/>
+                <context/>
+                <arguments/>
+                <message/>
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <exclude>net\.sf\.cglib\..*</exclude>
+                        <shortenedClassNameLength>36</shortenedClassNameLength>
+                        <maxDepthPerThrowable>50</maxDepthPerThrowable>
+                        <rootCauseFirst>true</rootCauseFirst>
+                        <inlineHash>true</inlineHash>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+            <!-- no new lines in log output -->
+            <jsonFactoryDecorator class="net.logstash.logback.decorate.CharacterEscapesJsonFactoryDecorator">
+                <escape>
+                    <targetCharacterCode>10</targetCharacterCode>
+                    <escapeSequence>|</escapeSequence>
+                </escape>
+            </jsonFactoryDecorator>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
