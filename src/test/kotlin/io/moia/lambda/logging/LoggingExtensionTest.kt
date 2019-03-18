@@ -52,6 +52,13 @@ class LoggingExtensionTest {
     }
 
     @Test
+    fun `should log with empty context`() {
+        LoggingContext
+            .populateMdcFromHeaders(mapOf())
+        log.info("Test")
+    }
+
+    @Test
     fun `should log data content`() {
         LoggingContext
             .setTraceId("Trace-id")

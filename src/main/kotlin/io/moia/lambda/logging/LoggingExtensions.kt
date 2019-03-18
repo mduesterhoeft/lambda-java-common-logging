@@ -38,7 +38,7 @@ object LoggingContext {
         return this
     }
 
-    private fun Map<String, Any>.getCaseInsensitive(key: String): String? = entries.firstOrNull { it.key.toLowerCase() == key.toLowerCase() }?.value as String
+    private fun Map<String, Any>.getCaseInsensitive(key: String): String? = entries.firstOrNull { it.key.toLowerCase() == key.toLowerCase() }?.value as? String
 }
 
 object DataContentStructuredArgument {
